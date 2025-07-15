@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>⚠️ Sistema Comprometido ⚠️</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: "Courier New", monospace;
+      font-size: 18px;
+      padding: 30px;
+      white-space: pre-wrap;
+    }
+    .warning {
+      color: green;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    #revelacao {
+      color: white;
+      font-size: 20px;
+      margin-top: 40px;
+      display: none;
+    }
+    #terminal {
+      animation: blinkCursor 0.7s infinite;
+    }
+    @keyframes blinkCursor {
+      0% { border-right: 2px solid #00ff00; }
+      100% { border-right: 2px solid transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">A Inicializar conexão com o servidor remoto...</div>
+  <audio id="alarme" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+  <div id="revelacao">
+    <p class="warning">⚠️ ISSO FOI UMA SIMULAÇÃO ⚠️</p>
+    <p>Nenhum dado real foi comprometido.</p>
+    <p>Evite scanear QR Codes ou clicar em links suspeitos!</p>
+    <p><strong>#CibersegurançaImporta</strong></p>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const alarme = document.getElementById('alarme');
+
+    const mensagens = [
+      '🛜 A estabelecer conexão...',
+      'Acessar a dados pessoais...',
+      'Copiar passwords...',
+      'Extraindo arquivos confidenciais...',
+      'A Instalar backdoor...',
+      'Sistema comprometido! ',
+      'TODOS OS SEUS DADOS FORAM HACKEADOS!!! 🕵️‍♀️🕵️‍♀️'
+    ];
+
+    let i = 0;
+
+    function digitarTexto() {
+      if (i < mensagens.length) {
+        terminal.innerText += '\n' + mensagens[i];
+        if (i === mensagens.length - 1) {
+          alarme.play().catch(() => {});
+        }
+        i++;
+        setTimeout(digitarTexto, 1000);
+      } else {
+        setTimeout(() => {
+          document.getElementById('revelacao').style.display = 'block';
+        }, 2000);
+      }
+    }
+
+    setTimeout(digitarTexto, 1000);
+  </script>
+</body>
+</html>
